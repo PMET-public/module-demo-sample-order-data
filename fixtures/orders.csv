@@ -1,0 +1,9 @@
+"customer_email","currency","product","status","shipping_method","payment","refund","created_at","updated_at"
+"Joseph.Reed@thelumastory.com","USD","sku=MH07-L-Black,qty=2;sku=MH03-M-Black,qty=3;sku=MH07-XS-Green,qty=2;sku=MH08-XL-Brown,qty=2;sku=MH11,qty=2","complete","flatrate_flatrate","checkmo","no","2016-03-02 03:35:22","2016-03-02 03:35:22"
+"Zachary.Newton@the1umastory.com","USD","sku=MH11-L-Orange,qty=1;sku=MH04-XL-Green,qty=4;sku=MH10-M-Black,qty=4","complete","flatrate_flatrate","checkmo","no","2016-04-08 19:14:25","2016-04-08 19:14:25"
+"Clara.Price@thelumastory.com","USD","sku=MH12-XS-Green,qty=1;sku=MH04-XL-Green,qty=1;sku=MH08-M-Brown,qty=2;sku=MH09-S-Blue,qty=2;sku=MH12-L-Blue,qty=4","complete","flatrate_flatrate","checkmo","no","2016-07-22 18:42:56","2016-07-22 18:42:56"
+"Michael.Saunders@the1umastory.com","USD","sku=MH03-L-Blue,qty=4;sku=MH08-S-Red,qty=3;sku=MH02-M-Black,qty=4;sku=MH10,qty=1;sku=MH03-XS-Black,qty=3","complete","flatrate_flatrate","checkmo","no","2016-04-27 22:06:23","2016-04-27 22:06:23"
+"Ricky.Schneider@the1umastory.com","USD","sku=MH08-M-Brown,qty=1;sku=MH11-XL-White,qty=2;sku=MH01-L-Black,qty=1;sku=MH06-L-Purple,qty=4","complete","flatrate_flatrate","checkmo","no","2016-09-10 03:34:33","2016-09-10 03:34:33"
+"Garrett.Nunez@thelumastory.com","USD","sku=MH03,qty=2;sku=MH09-M-Red,qty=4;sku=MH02-XS-Red,qty=3;sku=MH11-M-Red,qty=1;sku=MH01-L-Black,qty=2","complete","flatrate_flatrate","checkmo","no","2016-10-09 02:01:17","2016-10-09 02:01:17"
+"Joseph.Reed@thelumastory.com","USD","sku=MH11-XS-Red,qty=1;sku=MH02-XL-Red,qty=3","complete","flatrate_flatrate","checkmo","no","2016-09-15 07:06:14","2016-09-15 07:06:14"
+
