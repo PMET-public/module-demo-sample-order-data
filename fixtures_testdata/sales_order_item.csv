@@ -1,0 +1,27 @@
+item_id,order_id,store_id,created_at,updated_at,product_type,sku,name,qty_invoiced,qty_ordered,qty_shipped,price,base_price,original_price,base_original_price,row_total,base_row_total,row_invoiced,base_row_invoiced,price_incl_tax,base_price_incl_tax,row_total_incl_tax,base_row_total_incl_tax
+1,1,1,10/11/16 17:07,10/11/16 17:07,simple,MH08-XL-Brown,Oslo Trek Hoodie-XL-Brown,2,2,2,42,42,42,42,84,84,84,84,42,42,84,84
+2,1,1,10/11/16 17:07,10/11/16 17:07,simple,MH07-L-Black,Hero Hoodie-L-Black,2,2,2,54,54,54,54,108,108,108,108,54,54,108,108
+3,1,1,10/11/16 17:07,10/11/16 17:07,simple,MH03-M-Black,Bruno Compete Hoodie-M-Black,3,3,3,63,63,63,63,189,189,189,189,63,63,189,189
+4,1,1,10/11/16 17:07,10/11/16 17:07,simple,MH07-XS-Green,Hero Hoodie-XS-Green,2,2,2,54,54,54,54,108,108,108,108,54,54,108,108
+5,2,1,10/11/16 17:07,10/11/16 17:07,simple,MH10-M-Black,Mach Street Sweatshirt -M-Black,4,4,4,62,62,62,62,248,248,248,248,62,62,248,248
+6,2,1,10/11/16 17:07,10/11/16 17:07,simple,MH11-L-Orange,Grayson Crewneck Sweatshirt -L-Orange,1,1,1,64,64,64,64,64,64,64,64,64,64,64,64
+7,2,1,10/11/16 17:07,10/11/16 17:07,simple,MH04-XL-Green,Frankie  Sweatshirt-XL-Green,4,4,4,60,60,60,60,240,240,240,240,60,60,240,240
+8,3,1,10/11/16 17:07,10/11/16 17:07,simple,MH12-L-Blue,Ajax Full-Zip Sweatshirt -L-Blue,4,4,4,69,69,69,69,276,276,276,276,69,69,276,276
+9,3,1,10/11/16 17:07,10/11/16 17:07,simple,MH12-XS-Green,Ajax Full-Zip Sweatshirt -XS-Green,1,1,1,69,69,69,69,69,69,69,69,69,69,69,69
+10,3,1,10/11/16 17:07,10/11/16 17:07,simple,MH04-XL-Green,Frankie  Sweatshirt-XL-Green,1,1,1,60,60,60,60,60,60,60,60,60,60,60,60
+11,3,1,10/11/16 17:07,10/11/16 17:07,simple,MH08-M-Brown,Oslo Trek Hoodie-M-Brown,2,2,2,42,42,42,42,84,84,84,84,42,42,84,84
+12,3,1,10/11/16 17:07,10/11/16 17:07,simple,MH09-S-Blue,Abominable Hoodie-S-Blue,2,2,2,69,69,69,69,138,138,138,138,69,69,138,138
+13,4,1,10/11/16 17:07,10/11/16 17:07,simple,MH03-XS-Black,Bruno Compete Hoodie-XS-Black,3,3,3,63,63,63,63,189,189,189,189,63,63,189,189
+14,4,1,10/11/16 17:07,10/11/16 17:07,simple,MH03-L-Blue,Bruno Compete Hoodie-L-Blue,4,4,4,63,63,63,63,252,252,252,252,63,63,252,252
+15,4,1,10/11/16 17:07,10/11/16 17:07,simple,MH08-S-Red,Oslo Trek Hoodie-S-Red,3,3,3,42,42,42,42,126,126,126,126,42,42,126,126
+16,4,1,10/11/16 17:07,10/11/16 17:07,simple,MH02-M-Black,Teton Pullover Hoodie-M-Black,4,4,4,70,70,70,70,280,280,280,280,70,70,280,280
+17,5,1,10/11/16 17:08,10/11/16 17:08,simple,MH06-L-Purple,Stark Fundamental Hoodie-L-Purple,4,4,4,42,42,42,42,168,168,168,168,42,42,168,168
+18,5,1,10/11/16 17:08,10/11/16 17:08,simple,MH08-M-Brown,Oslo Trek Hoodie-M-Brown,1,1,1,42,42,42,42,42,42,42,42,42,42,42,42
+19,5,1,10/11/16 17:08,10/11/16 17:08,simple,MH11-XL-White,Grayson Crewneck Sweatshirt -XL-White,2,2,2,64,64,64,64,128,128,128,128,64,64,128,128
+20,5,1,10/11/16 17:08,10/11/16 17:08,simple,MH01-L-Black,Chaz Kangeroo Hoodie-L-Black,1,1,1,52,52,52,52,52,52,52,52,52,52,52,52
+21,6,1,10/11/16 17:08,10/11/16 17:08,simple,MH01-L-Black,Chaz Kangeroo Hoodie-L-Black,2,2,2,52,52,52,52,104,104,104,104,52,52,104,104
+22,6,1,10/11/16 17:08,10/11/16 17:08,simple,MH09-M-Red,Abominable Hoodie-M-Red,4,4,4,69,69,69,69,276,276,276,276,69,69,276,276
+23,6,1,10/11/16 17:08,10/11/16 17:08,simple,MH02-XS-Red,Teton Pullover Hoodie-XS-Red,3,3,3,70,70,70,70,210,210,210,210,70,70,210,210
+24,6,1,10/11/16 17:08,10/11/16 17:08,simple,MH11-M-Red,Grayson Crewneck Sweatshirt -M-Red,1,1,1,64,64,64,64,64,64,64,64,64,64,64,64
+25,7,1,10/11/16 17:08,10/11/16 17:08,simple,MH02-XL-Red,Teton Pullover Hoodie-XL-Red,3,3,3,70,70,70,70,210,210,210,210,70,70,210,210
+26,7,1,10/11/16 17:08,10/11/16 17:08,simple,MH11-XS-Red,Grayson Crewneck Sweatshirt -XS-Red,1,1,1,64,64,64,64,64,64,64,64,64,64,64,64

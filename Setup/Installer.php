@@ -35,10 +35,13 @@ class Installer implements Setup\SampleData\InstallerInterface
     public function install()
     {
 
-        //$this->customerSetup->install(['MagentoEse_DemoSampleOrderData::fixtures/customers.csv']);
+        $this->customerSetup->install(['MagentoEse_DemoSampleOrderData::fixtures/customers.csv']);
+        //$this->rawTableData->install(['MagentoEse_DemoSampleOrderData::fixtures/sales_order_copy.csv']);
+        //$this->rawTableData->install(['MagentoEse_DemoSampleOrderData::fixtures/sales_order_item.csv']);
+        $this->rawTableData->install(['MagentoEse_DemoSampleOrderData::fixtures/sales_order.csv','MagentoEse_DemoSampleOrderData::fixtures/sales_order_grid.csv'],true);
+        //$this->rawTableData->install(['MagentoEse_DemoSampleOrderData::fixtures/sales_order_grid.csv'],true);
+        $this->rawTableData->install(['MagentoEse_DemoSampleOrderData::fixtures/sales_order_item.csv'],false);
         //$this->sampleOrder->install(['MagentoEse_DemoSampleOrderData::fixtures/orders.csv']);
-        $this->rawTableData->install(['MagentoEse_DemoSampleOrderData::fixtures/sales_order.csv']);
-
 
 
     }
