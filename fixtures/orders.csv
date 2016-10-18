@@ -1,0 +1,11 @@
+customer_email,currency,shipping_method,payment,product,refund,status,created_at,updated_at
+vip@thelumastory.com,USD,flatrate_flatrate,checkmo,"sku=MH07-L-Green,qty=2",no,complete,"2016-09-24 14:45:39","2016-09-24 14:45:39"
+clara.nunez@thelumastory.com,USD,flatrate_flatrate,checkmo,"sku=MH07-S-Black,qty=2",no,complete,"2016-09-24 15:30:39","2016-09-24 15:30:39"
+elmer.torres@thelumastory.com,USD,flatrate_flatrate,checkmo,"sku=MH09-M-Blue,qty=1",no,complete,"2016-09-24 16:02:39","2016-09-24 16:02:39"
+betty.weaver@thelumastory.com,USD,flatrate_flatrate,checkmo,"sku=MH08-S-Brown,qty=1;sku=MH06-XL-Purple,qty=1;sku=MH05-S-Red,qty=1",no,processing,"2016-09-24 16:04:39","2016-09-24 16:04:39"
+yoga@thelumastory.com,USD,flatrate_flatrate,checkmo,"sku=MH08-S-Brown,qty=17;sku=MH06-XL-Purple,qty=2",no,processing,"2016-09-24 18:04:39","2016-09-24 18:04:39"
+runner@thelumastory.com,USD,flatrate_flatrate,checkmo,"sku=MH07-L-Green,qty=2",no,complete,"2016-09-24 20:03:39","2016-09-24 20:03:39"
+roni_cost@example.com,USD,flatrate_flatrate,checkmo,"sku=MH11-S-Red,qty=1",no,complete,"2016-09-25 08:04:39","2016-09-25 08:04:39"
+alta.jensen@thelumastory.com,USD,flatrate_flatrate,checkmo,"sku=MH02-S-Purple,qty=1;sku=MH05-S-Red,qty=1",no,processing,"2016-09-25 09:04:39","2016-09-25 09:04:39"
+yoga@thelumastory.com,USD,flatrate_flatrate,checkmo,"sku=MH08-S-Brown,qty=1;sku=MH06-XL-Purple,qty=1",no,processing,"2016-09-25 12:04:39","2016-09-25 12:04:39"
+vip@thelumastory.com,USD,flatrate_flatrate,checkmo,"sku=MH04-M-Green,qty=1;sku=MH05-S-Red,qty=1;sku=MH07-M-Green,qty=1",no,processing,"2016-09-25 14:07:39","2016-09-25 14:07:39"

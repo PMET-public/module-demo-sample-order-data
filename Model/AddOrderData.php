@@ -5,6 +5,7 @@
  */
 namespace MagentoEse\DemoSampleOrderData\Model;
 
+use Braintree\Exception;
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 
 /**
@@ -12,26 +13,29 @@ use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class RawTableData
+class AddOrderData
 {
 
     protected $fixtureManager;
     protected $csvReader;
     protected $objectManager;
     protected $resourceConnection;
+    protected $updateSalesData;
 
 
     public function __construct(
         SampleDataContext $sampleDataContext,
-        \Magento\Framework\App\ResourceConnection $resourceConnection
+        \Magento\Framework\App\ResourceConnection $resourceConnection,
+        \MagentoEse\SalesSampleData\Cron\UpdateSalesData $updateSalesData
     ) {
         $this->fixtureManager = $sampleDataContext->getFixtureManager();
         $this->csvReader = $sampleDataContext->getCsvReader();
         $this->resourceConnection = $resourceConnection;
+        $this->updateSalesData = $updateSalesData;
 
     }
 
-    public function install(array $dataFixtures, $updateIds)
+    public function install(array $dataFixtures, $updateIds,$hourShift = 0)
     {
 
         foreach ($dataFixtures as $fileName) {
@@ -40,7 +44,6 @@ class RawTableData
             if (!file_exists($fileName)) {
                 continue;
             }
-            echo date('H:i:s', time()) ."\n";
             $rows = $this->csvReader->getData($fileName);
             $header = array_shift($rows);
 
@@ -64,12 +67,16 @@ class RawTableData
             $connection->query($sql);
             if($updateIds){
                 $this->updateCustomerIds($stageTableName);
+                $this->setIncrementId($stageTableName);
             }
+            $this->pushDates($stageTableName,$hourShift);
             $this->moveData($stageTableName,$tableName);
             $this->dropTable($stageTableName);
+
             unset($dataArray);
 
         }
+        $this->updateSalesData->refreshStatistics();
 
     }
 
@@ -99,10 +106,19 @@ class RawTableData
         $connection->query($sql);
     }
 
-    /*public function setFixtures(array $fixtures)
-    {
-        $this->fixtures = $fixtures;
-        return $this;
-    }*/
+   private function setIncrementId($stageTableName){
+       $connection = $this->resourceConnection->getConnection();
+       $sql="insert into sequence_order_1 select max(entity_id) from ".$stageTableName." where entity_id not in (select sequence_value from sequence_order_1)";
+       $connection->query($sql);
+   }
+
+   public function pushDates($stageTableName,$hourShift){
+       $connection = $this->resourceConnection->getConnection();
+       $sql = "select DATEDIFF(now(), max(created_at)) * 24 + EXTRACT(HOUR FROM now()) - EXTRACT(HOUR FROM max(created_at)) -1 as hours from ".$stageTableName;
+       $result = $connection->fetchAll($sql);
+       $dateDiff =  $result[0]['hours']+$hourShift;
+       $sql = "update " . $stageTableName . " set created_at =  DATE_ADD(created_at,INTERVAL ".$dateDiff." HOUR), updated_at =  DATE_ADD(updated_at,INTERVAL ".$dateDiff." HOUR)";
+       $connection->query($sql);
+   }
 
 }
