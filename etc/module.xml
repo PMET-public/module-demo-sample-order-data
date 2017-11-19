@@ -20,7 +20,7 @@
             <module name="Magento_GroupedSampleData"/>
             <module name="Magento_DownloadableSampleData"/>
             <module name="Magento_CmsSampleData"/>
-            <module name="FireGento_FastSimpleImport2"/>
+            <module name="FireGento_FastSimpleImport"/>
         </sequence>
     </module>
 </config>
