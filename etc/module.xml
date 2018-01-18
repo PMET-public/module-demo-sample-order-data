@@ -6,7 +6,7 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="MagentoEse_DemoSampleOrderData" setup_version="0.0.1">
+    <module name="MagentoEse_DemoSampleOrderData" setup_version="0.0.2">
         <sequence>
             <module name="Magento_Customer"/>
             <module name="Magento_Directory"/>
@@ -22,6 +22,9 @@
             <module name="Magento_CmsSampleData"/>
             <module name="MagentoEse_CustomerSampleData"/>
             <module name="FireGento_FastSimpleImport"/>
+            <module name="MagentoEse_LumaDEProducts"/>
+
+
         </sequence>
     </module>
 </config>
