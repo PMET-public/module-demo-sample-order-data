@@ -34,6 +34,9 @@ class UpgradeData implements UpgradeDataInterface
             $orderTableName = $connection->getTableName('sales_order');
             $sql = "update " . $orderTableName . " set base_currency_code =  'USD' where base_currency_code is NULL";
             $connection->query($sql);
+            $orderItemTableName = $connection->getTableName('sales_order_item');
+            $sql = "update " . $orderTableName . " so, ".$orderItemTableName." oi set oi.created_at = so.created_at, oi.updated_at = so.updated_at where oi.order_id = so.entity_id";
+            $connection->query($sql);
         }
     }
 
