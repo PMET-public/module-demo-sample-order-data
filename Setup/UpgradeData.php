@@ -41,10 +41,11 @@ class UpgradeData implements UpgradeDataInterface
         if (version_compare($context->getVersion(), '0.0.3', '<=')) {
             //set user create dates
             $connection = $this->resourceConnection->getConnection();
-            $sql = "select DATEDIFF(now(), max(created_at)) * 24 + EXTRACT(HOUR FROM now()) - EXTRACT(HOUR FROM max(created_at)) -1 as hours from customer_entity where entity_id > 10";
+            $customerTableName = $connection->getTableName('customer_entity');
+            $sql = "select DATEDIFF(now(), max(created_at)) * 24 + EXTRACT(HOUR FROM now()) - EXTRACT(HOUR FROM max(created_at)) -1 as hours from ".$customerTableName." where entity_id > 10";
             $result = $connection->fetchAll($sql);
             $dateDiff =  $result[0]['hours']-25;
-            $sql = "update customer_entity set created_at =  DATE_ADD(created_at,INTERVAL ".$dateDiff." HOUR), updated_at =  DATE_ADD(updated_at,INTERVAL ".$dateDiff." HOUR) where entity_id > 10";
+            $sql = "update ".$customerTableName." set created_at =  DATE_ADD(created_at,INTERVAL ".$dateDiff." HOUR), updated_at =  DATE_ADD(created_at,INTERVAL ".$dateDiff." HOUR) where entity_id > 10";
             $connection->query($sql);
         }
     }
