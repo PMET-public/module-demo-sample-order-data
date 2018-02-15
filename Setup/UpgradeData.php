@@ -47,6 +47,14 @@ class UpgradeData implements UpgradeDataInterface
             $dateDiff =  $result[0]['hours']-25;
             $sql = "update ".$customerTableName." set created_at =  DATE_ADD(created_at,INTERVAL ".$dateDiff." HOUR), updated_at =  DATE_ADD(created_at,INTERVAL ".$dateDiff." HOUR) where entity_id > 10";
             $connection->query($sql);
+       }
+        if (version_compare($context->getVersion(), '0.0.4', '<=')) {
+            //add shipping data to orders
+            $connection = $this->resourceConnection->getConnection();
+            $salesOrderTable = $connection->getTableName('sales_order');
+            $salesGridTable = $connection->getTableName('sales_order_grid');
+            $sql = "update ".$salesOrderTable." a, ".$salesGridTable." b set a.base_shipping_amount = b.shipping_and_handling, a.base_shipping_invoiced = b.shipping_and_handling where a.entity_id = b.entity_id and a.base_shipping_amount is null";
+            $connection->query($sql);
         }
     }
 
