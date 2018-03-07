@@ -6,9 +6,11 @@
 
 namespace MagentoEse\DemoSampleOrderData\Setup;
 
+use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Setup\UpgradeDataInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
+use MagentoEse\DemoSampleOrderData\Model\CreditMemos;
 
 class UpgradeData implements UpgradeDataInterface
 {
@@ -17,13 +19,21 @@ class UpgradeData implements UpgradeDataInterface
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
     protected $scopeConfig;
+
+    /** @var CreditMemos  */
+    private $creditMemos;
     private $encrypted;
 
+    /**
+     * UpgradeData constructor.
+     * @param ResourceConnection $resourceConnection
+     * @param CreditMemos $creditMemos
+     */
     public function __construct(
-        \Magento\Framework\App\ResourceConnection $resourceConnection
+        ResourceConnection $resourceConnection, CreditMemos $creditMemos
     ) {
         $this->resourceConnection = $resourceConnection;
-
+        $this->creditMemos = $creditMemos;
     }
 
     public function upgrade( ModuleDataSetupInterface $setup, ModuleContextInterface $context )
@@ -82,7 +92,11 @@ class UpgradeData implements UpgradeDataInterface
             $connection->query($sql);
             $sql = "update ".$salesOrderTable." so, ".$salesGridTable." sog set so.base_tax_amount = round(so.base_grand_total*.047,2), so.tax_amount = round(so.base_grand_total*.047,2),so.base_shipping_tax_amount = 0, so.base_to_order_rate = 1, so.shipping_tax_amount = 0 where so.entity_id = sog.entity_id and so.entity_id > 100 and sog.shipping_address like '%, UT %'";
             $connection->query($sql);
+
+            //create refunds
+            $this->creditMemos->createRefunds();
         }
+
     }
 
 }
