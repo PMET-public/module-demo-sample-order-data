@@ -7,6 +7,7 @@
 namespace MagentoEse\DemoSampleOrderData\Setup;
 
 use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\App\State;
 use Magento\Framework\Setup\UpgradeDataInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
@@ -14,7 +15,7 @@ use MagentoEse\DemoSampleOrderData\Model\CreditMemos;
 
 class UpgradeData implements UpgradeDataInterface
 {
-    public $_resourceConfig;
+    private $resourceConnection;
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
@@ -22,18 +23,21 @@ class UpgradeData implements UpgradeDataInterface
 
     /** @var CreditMemos  */
     private $creditMemos;
-    private $encrypted;
+
 
     /**
      * UpgradeData constructor.
      * @param ResourceConnection $resourceConnection
      * @param CreditMemos $creditMemos
+     * @param State $state
      */
     public function __construct(
-        ResourceConnection $resourceConnection, CreditMemos $creditMemos
+        ResourceConnection $resourceConnection,
+        CreditMemos $creditMemos
     ) {
         $this->resourceConnection = $resourceConnection;
         $this->creditMemos = $creditMemos;
+
     }
 
     public function upgrade( ModuleDataSetupInterface $setup, ModuleContextInterface $context )

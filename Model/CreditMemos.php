@@ -2,10 +2,9 @@
 
 namespace MagentoEse\DemoSampleOrderData\Model;
 
-
+use Magento\Framework\App\State;
 use Magento\Sales\Api\OrderRepositoryInterface as OrderRepository;
 use Magento\Sales\Model\Order\CreditmemoFactory as CreditMemoFactory;
-use Magento\Sales\Api\RefundInvoiceInterface;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Creditmemo;
 use Magento\Sales\Api\CreditmemoItemRepositoryInterface as CreditMemoItemRepository;
@@ -25,16 +24,26 @@ class CreditMemos
      * CreditMemos constructor.
      * @param OrderRepository $orderRepository
      * @param CreditMemoFactory $creditMemoFactory
-     * @param RefundInvoiceInterface $refundInvoice
      * @param CreditMemoItemRepository $creditMemoItemRepository
+     * @param State $state
      */
-    public function __construct(OrderRepository $orderRepository, CreditMemoFactory $creditMemoFactory,
-                                RefundInvoiceInterface $refundInvoice, CreditMemoItemRepository $creditMemoItemRepository)
+    public function __construct(OrderRepository $orderRepository,
+                                CreditMemoFactory $creditMemoFactory,
+                                CreditMemoItemRepository $creditMemoItemRepository,
+                                State $state
+    )
     {
+
         $this->orderRepository = $orderRepository;
         $this->creditMemoFactory = $creditMemoFactory;
-        $this->refundInvoice = $refundInvoice;
         $this->creditMemoItemRepository = $creditMemoItemRepository;
+        try{
+            $state->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
+        }
+        catch(\Magento\Framework\Exception\LocalizedException $e){
+            // left empty
+        }
+
     }
 
     public function createRefunds(){
