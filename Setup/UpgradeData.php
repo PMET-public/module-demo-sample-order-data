@@ -7,11 +7,10 @@
 namespace MagentoEse\DemoSampleOrderData\Setup;
 
 use Magento\Framework\App\ResourceConnection;
-use Magento\Framework\App\State;
 use Magento\Framework\Setup\UpgradeDataInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
-use MagentoEse\DemoSampleOrderData\Model\CreditMemos;
+use MagentoEse\DemoSampleOrderData\Model\Rma;
 
 class UpgradeData implements UpgradeDataInterface
 {
@@ -21,22 +20,20 @@ class UpgradeData implements UpgradeDataInterface
      */
     protected $scopeConfig;
 
-    /** @var CreditMemos  */
-    private $creditMemos;
-
+    /** @var Rma  */
+    private $rma;
 
     /**
      * UpgradeData constructor.
      * @param ResourceConnection $resourceConnection
-     * @param CreditMemos $creditMemos
-     * @param State $state
+     * @param Rma $rma
      */
     public function __construct(
         ResourceConnection $resourceConnection,
-        CreditMemos $creditMemos
+        Rma $rma
     ) {
         $this->resourceConnection = $resourceConnection;
-        $this->creditMemos = $creditMemos;
+        $this->rma = $rma;
 
     }
 
@@ -68,6 +65,7 @@ class UpgradeData implements UpgradeDataInterface
             $salesGridTable = $connection->getTableName('sales_order_grid');
             $salesOrderAddressTable = $connection->getTableName('sales_order_address');
             $customerAddressEntityTable = $connection->getTableName('customer_address_entity');
+            $salesOrderItemTable = $connection->getTableName('sales_order_item');
             //add shipping costs to orders
             $sql = "update ".$salesOrderTable." a, ".$salesGridTable." b set a.base_shipping_amount = b.shipping_and_handling, a.base_shipping_invoiced = b.shipping_and_handling where a.entity_id = b.entity_id and a.base_shipping_amount is null";
             $connection->query($sql);
@@ -80,10 +78,10 @@ class UpgradeData implements UpgradeDataInterface
             $connection->query($sql);
             $sql = "update ".$salesOrderTable." so, ".$salesOrderAddressTable." soa set so.billing_address_id = soa.entity_id where soa.parent_id = so.entity_id and soa.address_type = 'shipping' and so.billing_address_id is null;";
             $connection->query($sql);
+
             //add sales tax to orders from certain states
             $sql = "update ".$salesOrderTable." so, ".$salesGridTable." sog set so.base_tax_amount = round(so.base_grand_total*.0825,2), so.tax_amount = round(so.base_grand_total*.0825,2),so.base_shipping_tax_amount = 0, so.base_to_order_rate = 1, so.shipping_tax_amount = 0 where so.entity_id = sog.entity_id and so.entity_id > 100 and sog.shipping_address like '%, CA %'";
             $connection->query($sql);
-
             $sql = "update ".$salesOrderTable." so, ".$salesGridTable." sog set so.base_tax_amount = round(so.base_grand_total*.0825,2), so.tax_amount = round(so.base_grand_total*.0825,2),so.base_shipping_tax_amount = 0, so.base_to_order_rate = 1, so.shipping_tax_amount = 0 where so.entity_id = sog.entity_id and so.entity_id > 100 and sog.shipping_address like '%, MI %'";
             $connection->query($sql);
             $sql = "update ".$salesOrderTable." so, ".$salesGridTable." sog set so.base_tax_amount = round(so.base_grand_total*.08375,2), so.tax_amount = round(so.base_grand_total*.08375,2),so.base_shipping_tax_amount = 0, so.base_to_order_rate = 1, so.shipping_tax_amount = 0 where so.entity_id = sog.entity_id and so.entity_id > 100 and sog.shipping_address like '%, NY %'";
@@ -97,9 +95,21 @@ class UpgradeData implements UpgradeDataInterface
             $sql = "update ".$salesOrderTable." so, ".$salesGridTable." sog set so.base_tax_amount = round(so.base_grand_total*.047,2), so.tax_amount = round(so.base_grand_total*.047,2),so.base_shipping_tax_amount = 0, so.base_to_order_rate = 1, so.shipping_tax_amount = 0 where so.entity_id = sog.entity_id and so.entity_id > 100 and sog.shipping_address like '%, UT %'";
             $connection->query($sql);
 
-            //create refunds
-            $this->creditMemos->createRefunds();
+            //shift dates on recent demo orders so they bubble to the top
+            //get the difference in created_at date between order 1 and order 3999
+            $sql = "select TIMESTAMPDIFF(HOUR,o.created_at, p.created_at) as hours from ".$salesOrderTable." o, ".$salesOrderTable." p where p.entity_id=3999 and o.entity_id=1";
+            $result = $connection->fetchAll($sql);
+            $dateDiff =  $result[0]['hours']+1;
+            $sql = "update ".$salesOrderTable." set created_at = date_add(created_at, interval 65 HOUR), updated_at = date_add(created_at, interval 65 HOUR) where entity_id >= 3990 and entity_id <= 3999";
+            $connection->query($sql);
+            $sql = "update ".$salesGridTable." set created_at = date_add(created_at, interval 65 HOUR), updated_at = date_add(created_at, interval 65 HOUR) where entity_id >= 3990 and entity_id <= 3999";
+            $connection->query($sql);
+            $sql = "update ".$salesOrderItemTable." set created_at = date_add(created_at, interval 65 HOUR), updated_at = date_add(created_at, interval 65 HOUR) where order_id >= 3990 and order_id <= 3999";
+            $connection->query($sql);
+            //create returns
+            $this->rma->addRMA(['MagentoEse_DemoSampleOrderData::fixtures/returns.csv']);
         }
+
 
     }
 

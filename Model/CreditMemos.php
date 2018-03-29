@@ -46,10 +46,10 @@ class CreditMemos
 
     }
 
-    public function createRefunds(){
+    public function createRefund($orderId){
 
         /** @var Order $order */
-        $order = $this->orderRepository->get(3996);
+        $order = $this->orderRepository->get($orderId);
         /** @var CreditMemo $creditMemo */
         $creditMemo = $this->creditMemoFactory->createByOrder($order);
         //$creditMemo->setBaseAdjustment(10);
