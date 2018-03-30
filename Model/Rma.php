@@ -89,7 +89,7 @@ class Rma
                         'qty_approved' => 1, 'status' => 'received'];
                 }
                 $rmaData['items'] = [$itemData];
-                
+
                 /** @var \Magento\Rma\Model\Rma $rma */
                 $rma = $this->rmaInterface->create();
                 $saveRequest = $this->rmaDataMapper->filterRmaSaveRequest($rmaData);
