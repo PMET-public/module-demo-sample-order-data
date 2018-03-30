@@ -99,12 +99,12 @@ class UpgradeData implements UpgradeDataInterface
             //get the difference in created_at date between order 1 and order 3999
             $sql = "select TIMESTAMPDIFF(HOUR,o.created_at, p.created_at) as hours from ".$salesOrderTable." o, ".$salesOrderTable." p where p.entity_id=3999 and o.entity_id=1";
             $result = $connection->fetchAll($sql);
-            $dateDiff =  $result[0]['hours']+1;
-            $sql = "update ".$salesOrderTable." set created_at = date_add(created_at, interval 65 HOUR), updated_at = date_add(created_at, interval 65 HOUR) where entity_id >= 3990 and entity_id <= 3999";
+            $dateDiff =  $result[0]['hours']+4;
+            $sql = "update ".$salesOrderTable." set created_at = date_add(created_at, interval ".$dateDiff." HOUR), updated_at = date_add(created_at, interval 65 HOUR) where entity_id >= 3990 and entity_id < 3999";
             $connection->query($sql);
-            $sql = "update ".$salesGridTable." set created_at = date_add(created_at, interval 65 HOUR), updated_at = date_add(created_at, interval 65 HOUR) where entity_id >= 3990 and entity_id <= 3999";
+            $sql = "update ".$salesGridTable." set created_at = date_add(created_at, interval ".$dateDiff." HOUR), updated_at = date_add(created_at, interval 65 HOUR) where entity_id >= 3990 and entity_id < 3999";
             $connection->query($sql);
-            $sql = "update ".$salesOrderItemTable." set created_at = date_add(created_at, interval 65 HOUR), updated_at = date_add(created_at, interval 65 HOUR) where order_id >= 3990 and order_id <= 3999";
+            $sql = "update ".$salesOrderItemTable." set created_at = date_add(created_at, interval ".$dateDiff." HOUR), updated_at = date_add(created_at, interval 65 HOUR) where order_id >= 3990 and order_id < 3999";
             $connection->query($sql);
             //create returns
             $this->rma->addRMA(['MagentoEse_DemoSampleOrderData::fixtures/returns.csv']);

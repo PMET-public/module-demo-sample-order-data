@@ -89,9 +89,7 @@ class Rma
                         'qty_approved' => 1, 'status' => 'received'];
                 }
                 $rmaData['items'] = [$itemData];
-                $postData = ['comment'=>['comment'=>'comment',"is_visible_on_front"=>1],'rma_confirmation'=>1,
-                    'items'=>[['qty_requested'=>1,'reason'=>239,'condition'=>236,'resolution'=>234,'order_item_id'=>4009,'qty_authorized'=>1,'qty_approved'=>1,'status'=>'received']]];
-
+                
                 /** @var \Magento\Rma\Model\Rma $rma */
                 $rma = $this->rmaInterface->create();
                 $saveRequest = $this->rmaDataMapper->filterRmaSaveRequest($rmaData);
@@ -112,7 +110,9 @@ class Rma
     /**
      * @param $entityType
      * @param $attributeCode
-     * @return int
+     * @param $attributeValue
+     * @return mixed
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getOptionCode($entityType, $attributeCode, $attributeValue)
     {
