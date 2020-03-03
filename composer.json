@@ -1,13 +1,29 @@
 {
-    "name": "magentoese/module-demo-order-data",
-    "type": "magento2-module",
+    "name": "magento/ese/module-demo-order-data",
+    "type": "magento/2-module",
     "require": {
-        "magento/framework": "*"
+        "magento/framework": "*",
+        "magento/module-customer":"*",
+        "magento/module-directory":"*",
+        "magento/module-sample-data":"*",
+        "magento/module-customer-sample-data":"*",
+        "magento/module-import-export":"*",
+        "magento/module-catalog-sample-data":"*",
+        "magento/module-bundle-sample-data":"*",
+        "magento/module-configurable-sample-data":"*",
+        "magento/module-grouped-product-sample-data":"*",
+        "magento/module-downloadable-sample-data":"*",
+        "magento/module-cms-sample-data":"*",
+        "magentoese/module-customer-sample-data":"*",
+        "firegento/fastsimpleimport": "dev-updated",
+        "magentoese/module-luma-de-products":"*",
+        "magento/module-sales":"*"
     },
     "autoload": {
         "files": [ "registration.php" ],
         "psr-4": {
             "MagentoEse\\DemoSampleOrderData\\": ""
         }
-    }
+    },
+    "version": "1.0.4"
 }
