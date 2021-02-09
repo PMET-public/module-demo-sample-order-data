@@ -27,6 +27,8 @@ class Customer extends \Magento\Customer\Model\Address\Validator\Customer
     }
     public function validate(AbstractAddress $address): array
     {
+        //This override is to get around address validation issues that began in 2.4.2. This entire module will be depreated in favor of
+        //adding order data via the data installer
         $errors = [];
         $addressId = $address instanceof QuoteAddressInterface ? $address->getCustomerAddressId() : $address->getId();
         if ($addressId !== null) {
