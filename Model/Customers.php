@@ -43,7 +43,7 @@ class Customers
             foreach ($rows as $row) {
                 $_productsArray[] = array_combine($header, $row);
             }
-            $this->importerModel = $this->objectManager->create('FireGento\FastSimpleImport\Model\Importer');
+            $this->importerModel = $this->objectManager->create('MagentoEse\DataInstall\Model\Import\Importer\Importer');
             $this->importerModel->setEntityCode('customer_composite');
             $this->importerModel->setValidationStrategy('validation-skip-errors');
             try {
