@@ -37,6 +37,29 @@ class Rma
     /** @var CreditMemos  */
     private $creditMemos;
 
+    /**
+    * @var FixtureManager
+    */
+    private $fixtureManager;
+
+    /**
+    * @var Csv
+    */
+    private $csvReader;
+
+    /**
+     * 
+     * @param SampleDataContext $sampleDataContext 
+     * @param Magento\Rma\Model\RmaFactory $rmaInterface 
+     * @param RmaDataMapper $rmaDataMapper 
+     * @param OrderRepository $orderRepository 
+     * @param Magento\Rma\Model\Rma\Status\HistoryFactory $rmaComment 
+     * @param Magento\Eav\Model\Entity\AttributeFactory $entityAttribute 
+     * @param Magento\Eav\Model\ResourceModel\Entity\Attribute\Option\CollectionFactory $attributeCollection 
+     * @param CreditMemos $creditMemos 
+     * @return void 
+     */
+
     public function __construct(
         SampleDataContext $sampleDataContext,
         RmaFactory $rmaInterface,

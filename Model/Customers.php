@@ -5,6 +5,7 @@
  */
 namespace MagentoEse\DemoSampleOrderData\Model;
 
+use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 
 /**
@@ -18,6 +19,23 @@ class Customers
     protected $fixtureManager;
     protected $csvReader;
     protected $objectManager;
+
+    /**
+     * @var \'MagentoEse\DataInstall\Model\Import\Importer\Importer
+     */
+    protected $importerModel;
+
+    /**
+     * @var array
+     */
+    protected $fixtures;
+    
+    /**
+     * 
+     * @param SampleDataContext $sampleDataContext 
+     * @param ObjectManagerInterface $objectManager 
+     * @return void 
+     */
 
     public function __construct(
         SampleDataContext $sampleDataContext,
